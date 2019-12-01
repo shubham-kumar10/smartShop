@@ -94,4 +94,52 @@ public class Purchase {
 		return "Purchase [id=" + id + ", user=" + user + ", total=" + total + ", rewardPoints=" + rewardPoints
 				+ ", dateOfPurchase=" + dateOfPurchase + ", purchaseDetails=" + purchaseDetails + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dateOfPurchase == null) ? 0 : dateOfPurchase.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((purchaseDetails == null) ? 0 : purchaseDetails.hashCode());
+		result = prime * result + rewardPoints;
+		result = prime * result + total;
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Purchase other = (Purchase) obj;
+		if (dateOfPurchase == null) {
+			if (other.dateOfPurchase != null)
+				return false;
+		} else if (!dateOfPurchase.equals(other.dateOfPurchase))
+			return false;
+		if (id != other.id)
+			return false;
+		if (purchaseDetails == null) {
+			if (other.purchaseDetails != null)
+				return false;
+		} else if (!purchaseDetails.equals(other.purchaseDetails))
+			return false;
+		if (rewardPoints != other.rewardPoints)
+			return false;
+		if (total != other.total)
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		return true;
+	}
+	
+	
 }

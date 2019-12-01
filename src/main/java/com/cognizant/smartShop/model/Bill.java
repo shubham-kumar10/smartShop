@@ -41,5 +41,46 @@ public class Bill {
 	public void setTotal(double total) {
 		this.total = total;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((contact == null) ? 0 : contact.hashCode());
+		result = prime * result + ((productList == null) ? 0 : productList.hashCode());
+		result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(total);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Bill other = (Bill) obj;
+		if (contact == null) {
+			if (other.contact != null)
+				return false;
+		} else if (!contact.equals(other.contact))
+			return false;
+		if (productList == null) {
+			if (other.productList != null)
+				return false;
+		} else if (!productList.equals(other.productList))
+			return false;
+		if (quantity == null) {
+			if (other.quantity != null)
+				return false;
+		} else if (!quantity.equals(other.quantity))
+			return false;
+		if (Double.doubleToLongBits(total) != Double.doubleToLongBits(other.total))
+			return false;
+		return true;
+	}
+	
 	
 }
