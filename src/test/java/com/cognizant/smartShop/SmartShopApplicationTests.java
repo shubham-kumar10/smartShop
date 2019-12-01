@@ -1,5 +1,7 @@
 package com.cognizant.smartShop;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
@@ -80,14 +82,25 @@ class SmartShopApplicationTests {
 	
 	@Test
 	public void testAddProduct(){
-		
+		Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+		Product product = new Product(
+				"111","Test User","Test","Testbrand","Testquantity", "Tetsrate_per_quantity",
+				"stock_count", date, "String aisle", "String shelf",date,date,
+				"String image");
+		productService.addProduct(product);
+		productService.getProduct("111");
+		Product addproduct = productService.getProduct("111");
+		Assertions.assertTrue(product.equals(addproduct));
 	}
 	
+	
 	@Test
-	public void testGetProduct(){
-		Product product = productService.getProduct("111");
-		Assertions.assertFalse(product.getName().equals("TestProduct"));
+	public void testDelete(){
+		Product product = productService.getProduct("111"); 
+		List<Product> products = productService.deleteProduct("111");
+		Assertions.assertFalse(products.contains(product));
 	}
+	
 	
 	@Test
 	@Order(3)
