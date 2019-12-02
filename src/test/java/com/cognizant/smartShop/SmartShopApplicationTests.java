@@ -73,6 +73,14 @@ class SmartShopApplicationTests {
 	}
 	
 	@Test
+	@Order(3)
+	public void testFindUserByUsername(){
+		String testVar = "TestUser";
+		Assertions.assertTrue(userService.findByUsername(testVar).getUsername().equals(testVar));
+	}
+	
+	@Test
+	@Order(4)
 	public void testGetAllProducts(){
 		List<Product> products = new ArrayList<Product>();
 		products = productService.getAllProducts();
@@ -81,6 +89,7 @@ class SmartShopApplicationTests {
 	}
 	
 	@Test
+	@Order(5)
 	public void testAddProduct(){
 		Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 		Product product = new Product(
@@ -93,8 +102,17 @@ class SmartShopApplicationTests {
 		Assertions.assertTrue(product.equals(addproduct));
 	}
 	
+	@Test
+	@Order(6)
+	public void testModifyProduct(){
+		Product product = productService.getProduct("111"); 
+		String modify = "New Test Brand";
+		product.setBrand(modify);
+		Assertions.assertTrue(productService.getProduct("111").getBrand().equals(modify));
+	}
 	
 	@Test
+	@Order(7)
 	public void testDelete(){
 		Product product = productService.getProduct("111"); 
 		List<Product> products = productService.deleteProduct("111");
@@ -102,12 +120,7 @@ class SmartShopApplicationTests {
 	}
 	
 	
-	@Test
-	@Order(3)
-	public void testFindUserByUsername(){
-		String testVar = "TestUser";
-		Assertions.assertTrue(userService.findByUsername(testVar).getUsername().equals(testVar));
-	}
+	
 	
 
 }
