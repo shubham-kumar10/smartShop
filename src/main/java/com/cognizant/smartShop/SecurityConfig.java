@@ -43,8 +43,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		httpSecurity.csrf().disable().httpBasic().and().authorizeRequests().antMatchers("/authenticate")
 				.hasAnyAuthority("U", "A", "S")
 				.antMatchers("/admin/request").hasAuthority("S")
-				.antMatchers("/admin/*").hasAuthority("S")
-				.antMatchers("/admin/*").hasAuthority("S")
 				.anyRequest().authenticated()
 				.and().addFilter(new JwtAuthorizationFilter(authenticationManager()));
 	}

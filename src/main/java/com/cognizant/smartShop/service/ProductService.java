@@ -42,6 +42,7 @@ public class ProductService {
 	@Transactional
 	public boolean modifyProduct(Product product) {
 		System.out.println(product);
+		System.out.println(product.getName());
 		Product opProduct = productRepository.findAllByCode(product.getCode());
 		System.out.println(opProduct);
 		if (opProduct!=null) {

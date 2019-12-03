@@ -81,6 +81,13 @@ public class Bill {
 			return false;
 		return true;
 	}
+	public Bill(String contact,List<Product> productList, List<Integer> quantity,double total) {
+		super();
+		this.productList = productList;
+		this.quantity = quantity;
+		this.contact = contact;
+		this.total = total;
+	}
 	
 	
 }

@@ -14,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.cognizant.smartShop.model.Bill;
 import com.cognizant.smartShop.model.Product;
+import com.cognizant.smartShop.model.PurchaseDetails;
 import com.cognizant.smartShop.model.USER;
 import com.cognizant.smartShop.repository.ProductRepository;
 import com.cognizant.smartShop.repository.PurchaseDetailsRepository;
@@ -93,13 +95,12 @@ class SmartShopApplicationTests {
 	public void testAddProduct(){
 		Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 		Product product = new Product(
-				"111","Test User","Test","Testbrand","Testquantity", "Tetsrate_per_quantity",
-				"stock_count", date, "String aisle", "String shelf",date,date,
+				"111","Test User","Test","Testbrand","Test", "1",
+				"sto", date, "Stre", "Strf",date,date,
 				"String image");
 		productService.addProduct(product);
-		productService.getProduct("111");
 		Product addproduct = productService.getProduct("111");
-		Assertions.assertTrue(product.equals(addproduct));
+		Assertions.assertEquals(product, addproduct);
 	}
 	
 	@Test
@@ -108,6 +109,7 @@ class SmartShopApplicationTests {
 		Product product = productService.getProduct("111"); 
 		String modify = "New Test Brand";
 		product.setBrand(modify);
+		productService.modifyProduct(product);
 		Assertions.assertTrue(productService.getProduct("111").getBrand().equals(modify));
 	}
 	
@@ -119,8 +121,18 @@ class SmartShopApplicationTests {
 		Assertions.assertFalse(products.contains(product));
 	}
 	
-	
-	
-	
-
+//	@Test
+//	@Order(8)
+//	public void testGenerateBill(){
+//		List<Integer> quant = new ArrayList<Integer>();
+//		List<Product> products = new ArrayList<Product>();
+//		Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+//		quant.add(1);
+//		products.add(new Product("111","Test User","Test","Testbrand","Test", "1",
+//				"sto", date, "Stre", "Strf",date,date,
+//				"String image"));
+//		Bill bill = new Bill("101010101010",products,quant,50.5);
+//		PurchaseDetails pr = purchaseDetailsRepository.findByProduct(products.get(0));
+//		Assertions.assertTrue(pr.getProduct().equals((products).get(0)));
+//	}
 }

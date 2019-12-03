@@ -32,10 +32,6 @@ public class BillService {
 	
 	@Autowired
 	ProductRepository productRepository;
-	
-	public List<Bill> getAllBills() {
-		return null;
-	}
 
 	@Transactional
 	public void generateBill(Bill bill) {
