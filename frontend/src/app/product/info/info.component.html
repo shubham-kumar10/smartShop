@@ -1,0 +1,62 @@
+<div class="card mt-3">
+    <img class="card-img-top" alt="product" src={{product.image}} />
+    <div class="card-body">
+        <h5 class="card-title">{{product.name}}
+            <span class="boxOffice-text">{{product.rate_per_quantity|currency : 'INR' : 'symbol'}}</span></h5>
+
+        <div class="d-flex flex-row">
+            <div class="justify-content-start mr-auto">
+                <h6><span class="badge badge-primary TEASER-icon">Stock</span>&nbsp;{{product.stock_count}}</h6>
+            </div>
+            <div class="justify-content-end ml-auto">
+                <h6>{{product.code}}</h6>
+            </div>
+        </div>
+
+        <div class="d-flex flex-row">
+            <div class="justify-content-start mr-auto">
+                <h6><span class="badge badge-primary TEASER-icon">Shelf</span>&nbsp;{{product.shelf}}</h6>
+            </div>
+            <div class="justify-content-end ml-auto">
+                <h6><span class="badge badge-primary TEASER-icon">Aisle</span>&nbsp;{{product.aisle}}</h6>
+            </div>
+        </div>
+
+        <div class="d-flex flex-row justify-content-end mr-auto" *ngIf="_product.isAdmin && _product.billing">
+            <form [formGroup]="Form" (submit)="updateQty">
+                <div class="d-flex flex-column col-lg-8">
+                    <input class="form-control" type="text" placeholder="Qty" name="qty" formControlName="qty">
+                </div>
+            </form>
+        </div>
+
+        <div class="d-flex flex-row justify-content-between" *ngIf="_product.isAdmin && !_product.billing">
+            <div class="d-flex flex-column">
+                <button type="button" class="btn add-to-favorites mr-auto mt-2" (click)="edit()"
+                    [routerLink]="['/product',product.code]">
+                    <i class="material-icons md-16">edit</i>&nbsp;Update
+                </button>
+                <button type="button" class="btn add-to-favorites mr-auto mt-2"
+                    (click)="deleteRequested.emit(product.code)">
+                    <i class="material-icons">highlight_off</i>&nbsp;Delete&nbsp;
+                </button>
+            </div>
+            <div class="d-flex flex-column">
+                <span><i class="material-icons mr-auto time">access_time</i>
+                    <span class="text-muted">Add Date</span></span>
+                <p>{{product.add_date | date}}</p>
+
+            </div>
+        </div>
+
+        <div class="d-flex flex-row justify-content-between" *ngIf="_product.isAdmin && _product.billing">
+            <div class="d-flex flex-column">
+                <button type="button" class="btn add-to-favorites mr-auto mt-2"
+                    (click)="updateQty(product.code,quantity)">
+                    <i class="material-icons md-16">edit</i>&nbsp;Add To Bill
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>

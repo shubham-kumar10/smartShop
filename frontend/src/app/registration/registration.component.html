@@ -1,0 +1,171 @@
+<div class="container d-flex justify-content-center">
+    <div class="col-md-12 mt-6">
+        <div class="card mt-5">
+            <!-- FORM -->
+            <form class="m-3" [formGroup]="signUpForm" (submit)="addUser()">
+                <div class="row">
+                    <h2 class="col-lg-12 mb-4">Sign Up</h2>
+                    <div class="col-lg-11 alert alert-danger mx-3" *ngIf="userCreated == false">
+                        {{this.error}}
+                    </div>
+                    <div class="col-lg-11 alert alert-success mx-3" *ngIf="userCreated == true">
+                        {{this.error}}
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="username">Username</label>
+                        <input type="text" class="col-lg-12 form-control mb-2 mr-sm-2" placeholder="Enter Username"
+                            formControlName="username" id="username">
+                        <div class="text-danger"
+                            *ngIf="username.invalid && username.errors.required && username.touched">
+                            Username is required
+                        </div>
+                        <div class="text-danger" *ngIf="username.errors?.maxlength || username.errors?.minlength">Movie
+                            name must
+                            be between 3 to 10 characters only</div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="firstname">Fistname</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter First Name"
+                            formControlName="firstname" id="firstname">
+                        <div class="text-danger"
+                            *ngIf="firstname.invalid && firstname.errors.required && firstname.touched">First Name is
+                            required</div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="lastname">Lastname</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" type="text" placeholder="Enter Last Name"
+                            formControlName="lastname" id="lastname" />
+                        <div class="text-danger"
+                            *ngIf="lastname.invalid && lastname.errors.required && lastname.touched">Last Name is
+                            required</div>
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <label for="contact">Phone</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" type="text"
+                            placeholder="Enter Phone Number" formControlName="contact" id="contact" />
+                        <div class="text-danger" *ngIf="contact.invalid && contact.errors.required && contact.touched">
+                            Contact is mandatory and must be 10 digits</div>
+                    </div>
+
+
+                    <div class="col-lg-4">
+                        <label for="gender">Gender</label>
+                        <select class="form-control" id="gender" formControlName="gender">
+                            <option disabled selected value>Choose Your Gender</option>
+                            <option value="Male" selected>Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                        <div class="text-danger" *ngIf="gender.invalid && gender.errors.required && gender.touched">
+                            Gender is required
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <label for="age">Age</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" type="text" placeholder="Enter Age"
+                            formControlName="age" id="age" />
+                        <div class="text-danger" *ngIf="age.invalid && age.errors.required && age.touched">Last Name is
+                            required</div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <label for="role">Role</label>
+                        <select class="form-control" id="role" formControlName="role">
+                            <option disabled selected value>Choose A Role</option>
+                            <option value="Customer" selected>Customer</option>
+                            <option value="Shop Manager">Shop Manager</option>
+                        </select>
+                        <div class="text-danger" *ngIf="role.invalid && role.errors.required && role.touched"> Role is
+                            required
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control mb-2 mr-sm-2" placeholder="Enter Password"
+                            formControlName="password" id="password">
+                        <div class="text-danger"
+                            *ngIf="password.invalid && password.errors.required && password.touched">Password is
+                            required</div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" class="form-control mb-2 mr-sm-2" placeholder="Enter Confirm Password"
+                            formControlName="confirmPassword" id="confirmPassword">
+                        <div class="text-danger"
+                            *ngIf="confirmPassword.invalid && confirmPassword.errors.required && confirmPassword.touched">
+                            Confirm the Password</div>
+                        <div class="text-danger" *ngIf="signUpForm.get('confirmPassword').hasError('nomatch')">Password
+                            and Confirm Password do not match</div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="question1">Security Question 1</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" type="text"
+                            placeholder="Enter Your Question" formControlName="question1" id="question1" />
+                        <div class="text-danger"
+                            *ngIf="question1.invalid && question1.errors.required && question1.touched">Last Name is
+                            required</div>
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="answer1">Security Answer 1</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" type="text" placeholder="Enter Your Answer"
+                            formControlName="answer1" id="answer1" />
+                        <div class="text-danger" *ngIf="answer1.invalid && answer1.errors.required && answer1.touched">
+                            Last Name is
+                            required</div>
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <label for="question2">Security Question 2</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" type="text"
+                            placeholder="Enter Your Question" formControlName="question2" id="question2" />
+                        <div class="text-danger"
+                            *ngIf="question2.invalid && question2.errors.required && question2.touched">Last Name is
+                            required</div>
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="answer2">Security Answer 2</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" type="text" placeholder="Enter Your Answer"
+                            formControlName="answer2" id="answer2" />
+                        <div class="text-danger" *ngIf="answer2.invalid && answer2.errors.required && answer2.touched">
+                            Last Name is
+                            required</div>
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <label for="question3">Security Question 3</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" type="text"
+                            placeholder="Enter Your Question" formControlName="question3" id="question3" />
+                        <div class="text-danger"
+                            *ngIf="question3.invalid && question3.errors.required && question3.touched">Last Name is
+                            required</div>
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="answer3">Security Answer 3</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" type="text" placeholder="Enter Your Answer"
+                            formControlName="answer3" id="answer3" />
+                        <div class="text-danger" *ngIf="answer3.invalid && answer3.errors.required && answer3.touched">
+                            Last Name is
+                            required</div>
+                    </div>
+
+
+                    <div class="col-lg-12 mt-3">
+                        <button type="submit" class="btn add-to-favorites float-left"
+                            [disabled]="!signUpForm.valid">Sign
+                            Up</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

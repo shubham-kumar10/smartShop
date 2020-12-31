@@ -1,0 +1,147 @@
+<div class="container-fluid">
+    <h2 class="col-lg-12 mt-3">Product Details</h2>
+    <div class=" col-lg-12 alert  alert-success" *ngIf="editDone">Product Details Modified Successfully.</div>
+    <div class=" col-lg-12 alert  alert-success" *ngIf="addDone">Product Added Successfully.</div>
+    <form [formGroup]="itemForm" (submit)="onSubmit()" name="itemForm">
+
+        <div class="form-row">
+
+
+            <!-- 1.Name -->
+            <div class="col-lg-12">
+                <label for="title">Name</label>
+                <input type="text" class="form-control" id="name" formControlName="Pname" [formControl]="Pname"
+                    placeholder="Enter Product Name">
+                <div class="text-danger" *ngIf="Pname.errors?.maxlength || Pname.errors?.minlength">Name name must
+                    be between 2 to 10 characters only</div>
+                <div class="text-danger" *ngIf="Pname.invalid && Pname.errors?.required && Pname.touched"> Name is
+                    required
+                </div>
+            </div>
+
+            <!-- 2.Image -->
+            <div class="col-lg-12">
+                <label for="image">Image URL</label>
+                <input type="text" class="form-control" id="image" formControlName="image"
+                    placeholder="Enter Image URL">
+                <div class="text-danger" *ngIf="image.errors?.maxlength || image.errors?.minlength">Movie image must
+                    be between 2 to 10 characters only</div>
+                <div class="text-danger" *ngIf="image.invalid && image.errors?.required && image.touched "> Product
+                    Image is
+                    required
+                </div>
+            </div>
+
+            <!-- 3.Code -->
+            <div class="col-lg-3 col-md-12 mb-2">
+                <label for="code">Code</label>
+                <input type="text" class="form-control" id="code" formControlName="code"
+                    placeholder="Enter Product Code">
+                <div class="text-danger" *ngIf="code.invalid && code.errors?.required && code.touched"> Product Code is
+                    required
+                </div>
+            </div>
+
+            <!-- 5.Brand -->
+            <div class="col-lg-3 col-md-12 mb-2">
+                <label for="brand">Brand</label>
+                <input type="text" class="form-control" id="brand" formControlName="brand"
+                    placeholder="Enter Product Brand">
+                <div class="text-danger" *ngIf="brand.invalid && brand.errors?.required && brand.touched">Brand is
+                    required
+                </div>
+            </div>
+
+            <!-- 4.Rate -->
+            <div class="col-lg-3 col-md-12 mb-2">
+                <label for="rate">Rate</label>
+                <input type="text" class="form-control" id="rate" formControlName="rate"
+                    placeholder="Enter Rate/Quantity">
+                <div class="text-danger" *ngIf="rate.invalid && rate.errors?.required && rate.touched"> Price/Qty is
+                    required
+                </div>
+            </div>
+
+            <!-- 12.Qty Type -->
+            <div class="col-lg-3 col-md-12 mb-2">
+                <label for="qty">Qty Type</label>
+                <input type="text" class="form-control" id="qty" formControlName="qty"
+                    placeholder="Enter Product Qty Type">
+                <div class="text-danger" *ngIf="qty.invalid && qty.errors?.required && qty.touched"> Product Code is
+                    required
+                </div>
+            </div>
+
+            <!-- 9.Type -->
+            <div class="col-lg-3 mb-2">
+                <label for="type">Category</label>
+                <input type="text" class="form-control" id="type" formControlName="type"
+                    placeholder="Enter Product Type">
+                <div class="text-danger" *ngIf="type.invalid && type.errors?.required && type.touched"> Product
+                    Category/Type is
+                    required</div>
+            </div>
+
+            <!-- 6.Date -->
+            <input type="hidden" class="form-control" id="AddDate" formControlName="addDate">
+
+            <div class="col-lg-3 mb-2">
+                <label for="dateOfMfg">Date&nbsp;Of&nbsp;Manufacture</label>
+                <input type="date" class="form-control" id="dateOfLaunch" formControlName="dateOfMfg">
+                <div class="text-danger" *ngIf="dateOfMfg.invalid && dateOfMfg.errors?.required && dateOfMfg.touched">
+                    Date
+                    of Expiry is
+                    required</div>
+            </div>
+
+            <div class="col-lg-3 mb-2">
+                <label for="dateOfExp">Date&nbsp;Of&nbsp;Expiry</label>
+                <input type="date" class="form-control" id="dateOfLaunch" formControlName="dateOfExp">
+                <div class="text-danger" *ngIf="dateOfExp.invalid && dateOfExp.errors?.required && dateOfExp.touched">
+                    Date
+                    of Expiry is
+                    required</div>
+            </div>
+
+            <!-- Date End-->
+
+            <!-- 13.Stock -->
+            <div class="col-lg-3 col-md-12 mb-2">
+                <label for="stock">Stock Count</label>
+                <input type="text" class="form-control" id="stock" formControlName="stock"
+                    placeholder="Enter Stock Count">
+                <div class="text-danger" *ngIf="stock.invalid && stock.errors?.required && stock.touched"> Stock
+                    Availibilty is required
+                </div>
+            </div>
+
+            <!-- 10.Shelf -->
+            <div class="col-lg-6 col-md-12 mb-2">
+                <label for="shelf">Shelf</label>
+                <input type="text" class="form-control" id="shelf" formControlName="shelf"
+                    placeholder="Enter Shelf Number">
+                <div class="text-danger" *ngIf="shelf.invalid && shelf.errors?.required && shelf.touched"> Shelf Number
+                    is required
+                </div>
+            </div>
+            <!-- 11.Aisle -->
+            <div class="col-lg-6 col-md-12 mb-2">
+                <label for="aisle">Aisle</label>
+                <input type="text" class="form-control" id="aisle" formControlName="aisle"
+                    placeholder="Enter Aisle Location">
+                <div class="text-danger" *ngIf="aisle.invalid && aisle.errors?.required && aisle.touched"> Aisle
+                    Locations is required
+                </div>
+            </div>
+
+
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-1">
+                <button type="submit" class="btn add-to-favorites float-left" [disabled]="!itemForm.valid">Save</button>
+            </div>
+        </div>
+
+    </form>
+</div>
